@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job List</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<!-- 🔍 SEARCH BAR -->
+<form method="GET">
+    <div class="search-bar">
+        <input type="text" name="q" placeholder="search jobs">
+        <input type="text" name="location" placeholder="location">
+        <button type="submit">Search</button>
+    </div>
+</form>
+
+<h1>JOB LIST</h1>
+<h2>AVAILABLE JOBS</h2>
+
+<!-- JOB CARD -->
+<div class="outer-box">
+
+    {% for job in jobs %}
+    <div class="job-card">
+
+        <div class="job-title">{{ job.title }}</div>
+
+        <p><b>Company:</b> {{ job.company }}</p>
+        <p><b>Location:</b> {{ job.location }}</p>
+        <p><b>Description:</b> {{ job.description }}</p>
+        <p><b>Posted:</b> {{ job.created_at }}</p>
+        <p><b>Salary:</b> ₹{{ job.salary }}</p>
+
+        {% if request.user.role == "candidate" %}
+        <a href="/jobs/apply/{{job.id}}" class="apply-btn">Apply</a>
+        {% endif %}
+
+        {% if request.user.role == "recruiter" %}
+        <a href="/jobs/applicants/{{job.id}}/" class="apply-btn">Applicants</a>
+        {% endif %}
+
+    </div>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

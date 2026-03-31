@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Applicants</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'applicants.css' %}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Applicants for {{ job.title }}</h1>
+
+    {% for app in applications %}
+    <div class="card">
+
+        <div class="left">
+            <h3>{{ app.candidate.username }}</h3>
+
+            <p>
+                Status:
+                <span class="status {{ app.status }}">
+                    {{ app.status }}
+                </span>
+            </p>
+
+            <p>
+                Resume:
+                {% if app.resume %}
+                    <a href="{{ app.resume.url }}" target="_blank">View Resume</a>
+                {% else %}
+                    Not uploaded
+                {% endif %}
+            </p>
+        </div>
+
+        <div class="right">
+            <form method="POST" action="{% url 'update_status' app.id %}">
+                {% csrf_token %}
+
+                <select name="status">
+                    <option value="applied">Applied</option>
+                    <option value="shortlisted">Shortlisted</option>
+                    <option value="interview">Interview</option>
+                    <option value="selected">Selected</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+
+                <button type="submit">Update</button>
+            </form>
+        </div>
+
+    </div>
+    {% empty %}
+        <p>No applicants yet</p>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

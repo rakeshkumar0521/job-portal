@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Applications</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'applicants.css' %}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>My Applications</h1>
+
+    {% for app in applications %}
+    <div class="card">
+
+        <h3>{{ app.job.title }}</h3>
+        <p><strong>Company:</strong> {{ app.job.company }}</p>
+
+        <p>
+            <strong>Status:</strong> 
+            <span class="status {{ app.status }}">
+                {{ app.status }}
+            </span>
+        </p>
+
+    </div>
+    {% empty %}
+        <p class="no-data">No applications yet</p>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

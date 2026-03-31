@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'register.css' %}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>REGISTER</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Username</label>
+        {{ form.username }}
+
+        <label>Email address</label>
+        {{ form.email }}
+
+        <label>Role</label>
+        {{ form.role }}
+
+        <label>Password</label>
+        {{ form.password1 }}
+
+        <label>Password confirmation</label>
+        {{ form.password2 }}
+
+        <button type="submit">Register</button>
+
+    </form>
+
+</div>

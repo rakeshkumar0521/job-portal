@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="card">
+        <h2>Welcome back</h2>
+        <p class="subtitle">Enter your credentials to access your account</p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ form }}
+
+            <button type="submit">Sign in</button>
+        </form>
+
+        <p class="bottom-text">
+            Don’t have an account? 
+            <a href="{% url 'register' %}">Sign up</a>
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

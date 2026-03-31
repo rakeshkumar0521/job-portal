@@ -1,0 +1,13 @@
+<h2> My jobs</h2>
+
+{% for job in jobs%}
+<p><b>Title:</b>{{job.title}}</p>
+<p><b>Company:</b>{{job.company}}</p>
+<a href="jobs/applicants/{{job.id}}">view Applicants</a>
+<hr>
+
+{% empty %}
+<p>No jobs posted</p>
+{% endfor %}
+
+<a href="{% url 'logout' %}">Logout</a>">logout</a>

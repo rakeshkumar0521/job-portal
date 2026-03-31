@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #cbd5e1;
+}
+
+.search-bar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.search-bar input {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.search-bar button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    background: #0ea5e9;
+    color: white;
+    cursor: pointer;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 60px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.outer-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+.job-card {
+    width: 400px;
+    padding: 25px;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.job-title {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.job-card p {
+    margin: 8px 0;
+}
+
+.apply-btn {
+    display: block;
+    margin-top: 20px;
+    padding: 12px;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+}
