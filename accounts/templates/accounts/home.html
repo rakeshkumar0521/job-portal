@@ -1,62 +1,52 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Job Portal</title>
-
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link rel="stylesheet" href="{% static 'home.css' %}?=123">
 </head>
 
 <body>
+    
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>JobPortal</h2>
 
-<header>
-    <h2>Job Portal</h2>
+    <div>
+        {% if request.user.is_authenticated %}
 
-    <div class="nav-right">
-        {% if user.is_authenticated %}
-            <a href="{% url 'dashboard' %}" class="nav-btn">Dashboard</a>
-            <a href="{% url 'logout' %}" class="nav-btn">Logout</a>
+            {% if request.user.role == 'candidate' %}
+                <h3>{{ request.user.username}}</h3>
+                <a href="{% url 'candidate_dashboard' %}">Dashboard</a>
+                
+            {% endif %}
+
+            {% if request.user.role == 'recruiter' %}
+                <h3>{{ request.user.username}}</h3>
+                <a href="{% url 'recruiter_dashboard' %}">Dashboard</a>
+                <a href="{% url 'add_job' %}">Post Job</a>
+            {% endif %}
+
+            <a href="/logout/">Logout</a>
+
         {% else %}
-            <a href="{% url 'login' %}" class="nav-btn">Login</a>
-            <a href="{% url 'register' %}" class="nav-btn register">Register</a>
+            <a href="/login/">Login</a>
+            <a href="/register/">Register</a>
         {% endif %}
     </div>
-</header>
-
-<div class="main-content">
-
-    <section class="hero">
-        <h1>Find Your Future Job</h1>
-        <p>Connect your future with us</p>
-
-        {% if not user.is_authenticated %}
-            <a href="{% url 'login' %}" class="hero-btn">Login</a>
-        {% endif %}
-    </section>
-
-    <section class="cards">
-
-        <a href="{% url 'my_applications' %}" class="card-link">
-            <div class="card">
-                <h3>Track Applications</h3>
-                <p>Monitor your application status</p>
-            </div>
-        </a>
-
-        <a href="{% url 'job_list' %}" class="card-link">
-            <div class="card">
-                <h3>Find Jobs</h3>
-                <p>Search jobs based on your skills</p>
-            </div>
-        </a>
-
-    </section>
-
 </div>
 
-<footer>
+<!-- HERO SECTION -->
+ <main>
+     {% block content %}
+     {% endblock %}
+ </main>
+
+
+<!-- FOOTER -->
+<div class="footer">
     <p>© 2026 JobPortal | Built with Django</p>
-</footer>
+</div>
 
 </body>
 </html>
